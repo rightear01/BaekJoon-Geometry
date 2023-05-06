@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+/*
+접근법
+입력으로 들어오는 값은 한수의 위치와
+현재 직사각형의 가로길이와 세로 길이가 주어진다(좌표)
+가장 빨리 탈출 할 수 있는 거리를 구하는 문제이다.
+경우의 수는 총 4개가 나온다.
+ (1) (x -> 0), (y -> 0) (좌표에서 0으로 가는 거리)
+ (2) (x -> w), (y -> h) (직사각형의 좌표로부터 한수의 거리)
+*/
+typedef struct {
+    int x;
+    int y;
+}Position;
+
+int main() {
+    Position userSquare, defaultSquare;
+    int resultX = 0, resultY = 0;
+    scanf("%d %d", &userSquare.x, &userSquare.y);
+    scanf("%d %d", &defaultSquare.x, &defaultSquare.y);
+    if (userSquare.x < defaultSquare.x - userSquare.x) resultX = userSquare.x;
+    else resultX = defaultSquare.x - userSquare.x;
+    if (userSquare.y < defaultSquare.y - userSquare.y) resultY = userSquare.y;
+    else resultY = defaultSquare.y - userSquare.y;
+    int result = (resultX > resultY) ? resultY : resultX;
+    printf("%d", result);
+
+    return 0;
+}
