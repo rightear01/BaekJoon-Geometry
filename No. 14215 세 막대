@@ -1,0 +1,21 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+/*
+접근법
+삼각형의 조건중에
+세 변의 길이를 알 때에 가장 긴 변의 길이가 나머지 두 변의 길이를 합한 것 보다
+작아야 성립하다는 조건이 있다. -> 길이 조정이 필요가 없다.
+예외 -> 길이 조정이 필요 : 막대의 길이는 자연수 이기 때문에 두 변의 길이를 합하고 -1 한 값과 두 변을 더함.
+*/
+int compare(const void* a, const void* b) { return *(int*)a - *(int*)b; }
+int main() {
+	int array[3];
+	scanf("%d %d %d", &array[0], &array[1], &array[2]); 
+	qsort(array, 3, sizeof(int), compare);
+	// 오름차순으로 정렬하여 변의 길이를 비교하기 쉽게 바꿈.
+	if (array[0] + array[1] > array[2])  printf("%d", array[0] + array[1] + array[2]);
+	else printf("%d", 2 * (array[0] + array[1]) - 1);
+	
+	return 0;
+}
